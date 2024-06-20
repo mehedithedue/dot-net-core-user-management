@@ -1,0 +1,18 @@
+version: '3.8'  # Specify the Docker Compose version
+
+services:
+  mssql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mssql
+    hostname: mssql
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "MyPassword!123"
+    volumes:
+      - ./mssql/data:/var/opt/mssql/data
+      - ./mssql/log:/var/opt/mssql/log
+      - ./mssql/secrets:/var/opt/mssql/secrets
